@@ -1,0 +1,30 @@
+'''
+
+                            Online Python Compiler.
+                Code, Compile, Run and Debug python program online.
+Write your code in this editor and press "Run" button to execute it.
+
+'''
+
+s = "abciiidef"
+k = 3
+
+def max_vow(s,k):
+    vowels = "aeiou"
+    win_vow_cnt = sum(1 for c in s[:k] if c in vowels) 
+    max_vow_cnt = win_vow_cnt
+    
+    for i in range(k,len(s)):
+        if s[i] in vowels:
+            win_vow_cnt = win_vow_cnt+1
+            
+        if s[i-k] in vowels:
+            win_vow_cnt = win_vow_cnt - 1;
+        
+        print("max ", max_vow_cnt,"win",win_vow_cnt,"i" , i)
+        max_vow_cnt = max(max_vow_cnt, win_vow_cnt)
+        
+    return max_vow_cnt
+
+print(max_vow(s,k))
+        
