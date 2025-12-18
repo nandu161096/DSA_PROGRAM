@@ -1,0 +1,23 @@
+'''
+
+                            Online Python Compiler.
+                Code, Compile, Run and Debug python program online.
+Write your code in this editor and press "Run" button to execute it.
+
+'''
+arr = [2, 8, 5, 1, 7, 2]
+k = 3
+
+print("length of arr is ", len(arr))
+win_sum = sum(arr[0:k])
+max_sum = win_sum
+print("win sum is", win_sum)
+
+for i in range(k, len(arr)):
+    win_sum = win_sum + arr[i]
+    win_sum = win_sum - arr[i-k]
+    max_sum = max(max_sum, win_sum)
+    
+print("max_sum is", max_sum)
+
+#print("Hello World")
