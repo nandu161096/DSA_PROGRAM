@@ -1,0 +1,9 @@
+#include <stdio.h>
+
+int turn_off_rightmost_set_bit(int n) {
+    return n & (n-1);
+}
+
+int main() {
+    printf("%d\n", turn_off_rightmost_set_bit(12)); // 8
+}
