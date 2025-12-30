@@ -1,0 +1,14 @@
+#include <stdio.h>
+
+int is_pow_of_two(unsigned int n) {
+    int result;
+    result = ((n != 0) && ((n & (n-1)) == 0));
+    return result;
+}
+
+int main() {
+    printf("%d\n", is_pow_of_two(16)); // 1 (true) 
+    printf("%d\n", is_pow_of_two(18)); // 0 (false)
+
+    return 0;
+}
