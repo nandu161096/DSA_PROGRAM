@@ -1,0 +1,54 @@
+Using goto:
+
+#include <stdio.h>
+
+int main()
+{
+    int i = 1;
+    print:
+    printf("%d ",i);
+    i++;
+    if (i<=100) {
+        goto print;
+    }
+
+    return 0;
+}
+
+Using recussion:
+Logic 1:
+#include <stdio.h>
+
+void print(int i) {
+    printf("%d ",i);
+    if (i >= 100) {
+        return;
+    }
+    
+    if (i<100) {
+        print(i+1);
+    }
+}
+
+int main()
+{
+    print(1);
+
+    return 0;
+}
+
+Logic 2:
+#include <stdio.h>
+
+void print_numbers(int n) {
+    if (n > 100)
+        return;
+
+    printf("%d ", n);
+    print_numbers(n + 1);
+}
+
+int main() {
+    print_numbers(1);
+    return 0;
+}
