@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+int main() {
+    unsigned int n = 15;
+    int cnt = 0;
+    while (n) {
+        n = n & (n-1);
+        cnt++;
+    }
+    printf("cnt %d\n",cnt);
+    n = 15;
+    cnt = 0;
+    while(n) {
+        if (n & 1) {
+            cnt++;
+        }
+        n = n >> 1;
+    }
+    printf("after cnt %d\n",cnt);
+    n = 15;
+    cnt = 0;
+again:
+    if (n) {
+        n = n & (n-1);
+        cnt++;
+        goto again;
+    }
+    printf("after Sec cnt %d",cnt);
+    return 0;
+}
