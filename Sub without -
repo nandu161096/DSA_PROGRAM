@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <limits.h>
+
+int add(int a, int b) {
+    int sum = 0, carry = 0;
+    while (b!=0) {
+        sum = a^b;
+        carry = (a & b) <<1;
+        a = sum;
+        b = carry;
+    }
+    return a;
+}
+
+
+int main() {
+    int diff = add(3,add(~5,1));
+    printf("diff is %d \n",diff);
+    return 0;
+}
