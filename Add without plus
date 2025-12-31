@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <limits.h>
+
+int add(int a, int b) {
+    int sum = 0, carry = 0;
+    while (b!=0) {
+        sum = a^b;
+        carry = (a & b) <<1;
+        a = sum;
+        b = carry;
+    }
+    return sum;
+}
+
+int main() {
+    int sum = add(5,7);
+    printf("sum is %d ",sum);
+    return 0;
+}
