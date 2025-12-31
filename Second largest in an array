@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <limits.h>
+
+
+int second_largest(int a[], int n) {
+    int i = 0, max1 = INT_MIN, max2 = INT_MIN;
+    for(i = 0; i < n;i++) {
+        if (a[i] > max1) {
+            max2 = max1;
+            max1 = a[i];
+        } else if ((a[i] > max2) && (a[i] != max1)) {
+            max2 = a[i];
+        }
+    }
+    return max2;
+}
+
+int main() {
+    int arr[] = {3,5,6,1,9,8,9};
+    int max2 = second_largest(arr,7);
+    printf("max2 is %d \n",max2);
+    return 0;
+}
