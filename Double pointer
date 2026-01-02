@@ -1,0 +1,90 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int **ptr;
+    int i = 0, j = 0, r = 3, c = 4;
+    ptr = (int **)malloc(r*sizeof(int *));
+    
+    for(i = 0; i <r;i++) {
+        ptr[i] = (int *)malloc(c*sizeof(int));
+    }
+    
+    printf("ptr %p addr ptr %p\n",ptr,&ptr);
+    
+    for(i = 0; i <r;i++) {
+        ptr[i] = (int *)malloc(c*sizeof(int));
+        printf("ptr[%d] %p addr ptr %p\n",i,ptr[i],&ptr[i]);
+    }
+    for(i = 0; i <r;i++) {
+        for(j=0; j <c;j++) {
+            ptr[i][j] = (i * j)+6;       
+        }
+    }
+
+    for(i = 0; i <r;i++) {
+        for(j=0; j <c;j++) {
+            printf("%d i %d j %d \n",ptr[i][j],i,j);     
+        }
+    }
+    
+    for(i = 0; i <r;i++) {
+        free(ptr[i]);
+    }
+    free(ptr);
+    
+    int *data = malloc(r*c*sizeof(int));
+    ptr = (int **)malloc(r*sizeof(int *));
+    
+    printf("Second try");
+    for(i = 0;i<r;i++) {
+        ptr[i] = data + (i*c);
+    }
+        for(i = 0; i <r;i++) {
+        for(j=0; j <c;j++) {
+            ptr[i][j] = (i * j)+6;       
+        }
+    }
+
+    for(i = 0; i <r;i++) {
+        for(j=0; j <c;j++) {
+            printf("%d i %d j %d \n",ptr[i][j],i,j);     
+        }
+    }
+    free(data);
+    free(ptr);
+    
+    return 0;
+}
+
+[?2004l
+ptr 0x5d5e3e25f910 addr ptr 0x7fff81e630a0
+ptr[0] 0x5d5e3e25fda0 addr ptr 0x5d5e3e25f910
+ptr[1] 0x5d5e3e25fdc0 addr ptr 0x5d5e3e25f918
+ptr[2] 0x5d5e3e25fde0 addr ptr 0x5d5e3e25f920
+6 i 0 j 0 
+6 i 0 j 1 
+6 i 0 j 2 
+6 i 0 j 3 
+6 i 1 j 0 
+7 i 1 j 1 
+8 i 1 j 2 
+9 i 1 j 3 
+6 i 2 j 0 
+8 i 2 j 1 
+10 i 2 j 2 
+12 i 2 j 3 
+Second try6 i 0 j 0 
+6 i 0 j 1 
+6 i 0 j 2 
+6 i 0 j 3 
+6 i 1 j 0 
+7 i 1 j 1 
+8 i 1 j 2 
+9 i 1 j 3 
+6 i 2 j 0 
+8 i 2 j 1 
+10 i 2 j 2 
+12 i 2 j 3 
+[?2004h
