@@ -1,0 +1,78 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node {
+    int data;
+    struct node *next;
+};
+
+void print_list(struct node *head) {
+    struct node *temp = head;
+    while(temp !=NULL) {
+        printf("%d ",temp->data);
+        temp = temp->next;
+    }
+    printf("\n");
+}
+
+struct node* reverse(struct node *head) {
+    struct node *curr, *prev, *next;
+    curr = next = prev = NULL;
+    curr = head;
+    
+    while(curr) {
+        next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+    }
+    return prev;
+}
+
+int ispalindrome(struct node *head) {
+    struct node *fast, *slow;
+    fast = slow = head;
+    
+    while(fast && fast->next) {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    
+    struct node *sec = reverse(slow);
+    
+    struct node *temp = head;
+    
+    while(sec !=NULL) {
+        if (temp->data != sec->data) {
+            return 0;
+        }
+        sec = sec->next;
+        temp = temp->next;
+    }
+    return 1;
+}
+
+int main()
+{
+    struct node *temp = NULL, *prev = NULL, *head = NULL, *middle = NULL;
+    int i = 0;
+    int arr[] = {1, 2, 3, 4, 3, 2, 1};
+
+    for(i = 0; i < 7;i++) {
+        temp = (struct node*) malloc(sizeof(struct node));
+        temp->data = arr[i];
+        temp->next = NULL;
+        if (head == NULL) {
+            head = temp;
+        } else {
+            prev->next = temp;
+        }
+        prev = temp;
+    }
+    print_list(head);
+    int res = ispalindrome(head);
+    printf("%d\n",res);
+    
+    return 0;
+}
