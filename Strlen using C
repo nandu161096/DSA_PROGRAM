@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <string.h>
+
+void reverse(char str[]) {
+    int len = strlen(str) - 1;
+    int l = 0, r = len;
+    while(l < r) {
+        char temp = str[l];
+        str[l++] = str[r];
+        str[r--] = temp;
+    }
+    
+}
+
+int my_strlen(char str[]) {
+    int i = 0, len = 0;
+    for(i = 0; str[i]!= '\0';i++) {
+        len++;
+    }
+    return len;
+}
+
+int main() {
+    char str[] = "hello";
+    int len = my_strlen(str);
+    //reverse(str);
+    printf("%s len %d\n", str, len); // olleh
+}
