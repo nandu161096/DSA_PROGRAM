@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+void *my_memset(void *ptr, int val, size_t n) {
+    unsigned char *p = ptr;
+
+    while(n--) {
+        *p = (unsigned char)val;
+        p++;
+    }
+
+    return ptr;
+}
+
+void *my_memcpy(void *dst, void *src, size_t n) {
+    char *d = dst;
+    char *s = src;
+    
+    while(n--) {
+        *d++ = *s++;
+    }
+    
+    return dst;
+}
+
+void *my_memmove(void *dst, void *src, size_t n) {
+    char *d = dst;
+    char *s = src;
+    
+    if (d < s) {
+        while(n--) {
+            *d++ = *s++;
+        }
+    } else {
+        d += n;
+        s += n;
+        while(n--) {
+            *--d = *--s;
+        }
+    }
+    return dst;
+}
+
+int main() {
+    int *ptr, *ptr1;
+    ptr = malloc(3*sizeof(int));
+    ptr1 = malloc(3*sizeof(int));
+    
+    my_memset(ptr, 0x55, 3*sizeof(int));
+    char ptr3[] = "ABCDEFG";
+    my_memcpy(ptr3, ptr3+2, 5);
+    printf("No OL %s \n",ptr3);
+    strcpy(ptr3, "ABCDEFG");
+    my_memcpy(ptr3+2, ptr3, 5);
+    printf("OL %s \n",ptr3);
+    strcpy(ptr3, "ABCDEFG");
+    memmove(ptr3+2, ptr3, 5);
+    printf("OL %s memmove \n",ptr3);
+    strcpy(ptr3, "ABCDEFG");
+    my_memmove(ptr3+2, ptr3, 5);
+    printf("OL %s memmove custom \n",ptr3);
+}
