@@ -3,7 +3,7 @@
 
 void reverse(char str[]) {
     int len = strlen(str) - 1;
-    int l = 0, r = len -1;
+    int l = 0, r = len;
     while(l < r) {
         char temp = str[l];
         str[l++] = str[r];
