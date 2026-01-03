@@ -1,0 +1,31 @@
+
+#include <stdio.h>
+#include <string.h>
+
+char *my_strstr(char main_str[], char sub_str[])
+{
+    if (*sub_str == '\0') { 
+        printf("return sub");
+        return main_str;
+    }
+    
+    while(*main_str!='\0') {
+        char *m = main_str, *sub = sub_str;
+        while(*m && *sub && *m == *sub) {
+            m++;
+            sub++;
+        }
+        if (!*sub) {
+            printf("ret m\n");
+            return main_str;
+        }
+        main_str++;
+    }
+    printf("return NULL");
+    return NULL;
+}
+
+int main() {
+    printf("check\n");
+    printf("%s chh\n", my_strstr("hello world", "ch"));
+}
