@@ -1,0 +1,73 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *next;
+};
+
+/* Print list */
+void print_list(struct Node *head) {
+    while (head) {
+        printf("%d -> ", head->data);
+        head = head->next;
+    }
+    printf("NULL\n");
+}
+
+struct Node* getIntersectionNode(struct Node*a, struct Node *b) {
+    struct Node *p1, *p2;
+    p1 = a;
+    p2 = b;
+    
+    while (p1 != p2) {
+        p1 = p1 ? p1->next : b;
+        p2 = p2 ? p2->next : a;
+    }
+    return p1;
+}
+
+int main() {
+    /* Common part */
+    struct Node *common1 = malloc(sizeof(struct Node));
+    struct Node *common2 = malloc(sizeof(struct Node));
+
+    common1->data = 6;
+    common2->data = 7;
+    common1->next = common2;
+    common2->next = NULL;
+
+    /* List A: 1->2->3->6->7 */
+    struct Node *a1 = malloc(sizeof(struct Node));
+    struct Node *a2 = malloc(sizeof(struct Node));
+    struct Node *a3 = malloc(sizeof(struct Node));
+
+    a1->data = 1; a2->data = 2; a3->data = 3;
+    a1->next = a2;
+    a2->next = a3;
+    a3->next = common1;
+
+    /* List B: 4->5->6->7 */
+    struct Node *b1 = malloc(sizeof(struct Node));
+    struct Node *b2 = malloc(sizeof(struct Node));
+
+    b1->data = 4; b2->data = 5;
+    b1->next = b2;
+    b2->next = common1;
+
+    printf("List A:\n");
+    print_list(a1);
+
+    printf("List B:\n");
+    print_list(b1);
+    
+    /* Invoke intersection API */
+    struct Node *intersection = getIntersectionNode(a1, b1);
+    
+    if (intersection)
+        printf("Intersection at node with data = %d\n", intersection->data);
+    else
+        printf("No intersection\n");
+
+    return 0;
+}
