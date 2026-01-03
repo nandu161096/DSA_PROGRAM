@@ -1,0 +1,73 @@
+/******************************************************************************
+
+                            Online C Compiler.
+                Code, Compile, Run and Debug C program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <stdio.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node {
+    int data;
+    struct node* next;
+    struct node* prev;
+};
+
+void print_list(struct node *head) {
+    struct node *temp;
+    temp = head;
+    while(temp) {
+        printf("%d ",temp->data);
+        temp = temp->next;
+    }
+    printf("\n");
+}
+
+struct node *reverse_list(struct node *head) {
+    struct node *curr = head, *next = NULL, *prev = NULL, *temp = NULL;
+    
+    while(curr) {
+        /* Swap prev and next */
+        temp = curr->prev;
+        curr->prev = curr->next;
+        curr->next = temp;
+        curr = curr->prev;
+    }
+    
+    printf("temp %d\n",temp->data);
+    if (temp) {
+        head = temp->prev;
+    }
+    printf("head %d\n",head->data);    
+    return head;
+}
+
+int main()
+{
+    int arr[] = {1,3,4,5,6};
+    int n = sizeof(arr)/sizeof(arr[0]);
+    int i = 0;
+    struct node *temp = NULL, *head = NULL, *prev = NULL;
+    
+    for(i = 0; i < n;i++) {
+        temp = (struct node*)malloc(sizeof(struct node));
+        temp->data = arr[i];
+        temp->next = NULL;
+        temp->prev = NULL;
+        
+        if (head == NULL) {
+            head = temp;
+        } else {
+            prev->next = temp;
+            temp->prev = prev;
+        }
+        prev = temp;
+    }
+    print_list(head);
+    head = reverse_list(head);
+    print_list(head);
+    return 0;
+}
