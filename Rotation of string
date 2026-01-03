@@ -1,0 +1,16 @@
+
+#include <stdio.h>
+#include <string.h>
+
+int isRotation(char str1[], char str2[])
+{
+    char temp[2*strlen(str1)+1];
+    strcpy(temp,str1);
+    strcat(temp,str1);
+    
+    return (strstr(temp, str2) != NULL);
+}
+
+int main() {
+    printf("%d\n", isRotation("abcd", "cdab")); // 1
+}
