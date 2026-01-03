@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+void *my_memset(void *ptr, int val, size_t n) {
+    unsigned char *p = ptr;
+
+    while(n--) {
+        *p = (unsigned char)val;
+        p++;
+    }
+
+    return ptr;
+}
+
+void *my_memcpy(void *dst, void *src, size_t n) {
+    char *d = dst;
+    char *s = src;
+    
+    while(n--) {
+        *d++ = *s++;
+    }
+    
+    return dst;
+}
+
+int main() {
+    int *ptr, *ptr1;
+    ptr = malloc(3*sizeof(int));
+    ptr1 = malloc(3*sizeof(int));
+    
+    my_memset(ptr, 0x55, 3*sizeof(int));
+    int i = 0;
+    for(i = 0; i < 3; i++) {
+        printf("ptr[%d]:%x \n",i,ptr[i]);
+    }
+    my_memcpy(ptr1,ptr,  3*sizeof(int));
+    for(i = 0; i < 3; i++) {
+        printf("ptr1[%d]:%x \n",i,ptr1[i]);
+    }    
+}
