@@ -1,0 +1,21 @@
+
+#include <stdio.h>
+#include <string.h>
+
+int countWords(char str[]) {
+    int inword = 0, count = 0;
+    while(*str!= '\0') {
+        if (*str == ' ' || *str == '\n' || *str == '\t') {
+            inword = 0;
+        } else if (!inword) {
+            inword = 1;
+            count++;
+        }
+        str++;
+    }
+    return count;
+}
+
+int main() {
+    printf("%d\n", countWords("Hello   world C")); // 3
+}
