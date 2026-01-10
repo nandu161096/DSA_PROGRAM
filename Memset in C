@@ -2,6 +2,16 @@
 #include <string.h>
 #include <stdlib.h>
 
+/*Another method*/ 
+void *my_memset(void *ptr, int val, size_t n) {
+    char *p = ptr;
+    while(n--) {
+        *p++ = val;
+    }
+    return ptr;
+}
+
+
 void *my_memset(void *ptr, int val, size_t n) {
     unsigned char *p = ptr;
     while(n--) {
