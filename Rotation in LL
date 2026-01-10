@@ -150,3 +150,37 @@ int main()
 | Left rotate 2 | 3 → 4 → 5 → 1 → 2   |
 | Left rotate 3 | 4 → 5 → 1 → 2 → 3 ✅ |
 
+
+Logic 2:
+
+
+struct node *rotate(struct node *head, int k) {
+    if (!head || (k ==0)) {
+        printf("inside rotate\n");
+        return head;
+    }
+    struct node *curr = NULL, *kth = NULL;
+    curr = head;
+    int len = 1;
+    while(curr->next) {
+        curr = curr->next;
+        len++;
+    }
+    printf("length of list %d\n",len);
+    k = k % len;
+    if (k == 0) {
+        return head;
+    }
+    
+    curr->next = head;
+    int step = len - k;
+    
+    while(step--) {
+        curr = curr->next;
+    }
+    
+    head = curr->next;
+    curr->next = NULL;
+    
+    return head;
+}
