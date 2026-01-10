@@ -1,0 +1,34 @@
+#include <stdio.h>
+
+int ispow2(int n) {
+    return ((n>0) && ((n & (n-1)) == 0));
+}
+
+int main(void) {
+    int a = 0;
+    a = a | (1 << 5);
+    printf("After set a 0x%x\n",a);
+    a = a & ~(1 << 5);
+    printf("Clear set a 0x%x\n",a);
+    a = a ^ (1 << 5);
+    printf("Toggle set a 0x%x\n",a);
+    printf("%d %d\n",ispow2(16),ispow2(6));
+    
+    a = 0xFFFF;
+    int count = 0;
+    while (a) {
+        a = a & (a-1);
+        count++;
+    }
+    printf("%d\n",count);
+    
+    int b = 1;
+    unsigned char *ptr = (unsigned char*)&b;
+    if (*ptr == 1) {
+        printf("LE\n");
+    } else {
+        printf("BE\n");
+    }
+    
+    return 0;
+}
