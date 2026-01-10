@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+char *my_strcpy(char *dest, char *src) {
+    char *orig_dst = dest;
+    
+    while(*src!= '\0') {
+        *dest++ = *src++;
+    }
+    
+    *dest == '\0';
+    printf("orig %p dest %p addr orig_dst %p dest %p\n",orig_dst,dest,&dest,&orig_dst);
+    return orig_dst;
+}
+
+int main() {
+    char str[] = "abcdef";
+    int i = 0, len = 0;
+    for(i = 0; str[i] != '\0';i++) {
+        len++;
+    }
+    printf("%d\n",len);
+    char dst[60];
+    my_strcpy(dst, str);
+    printf("str %s dst %s addr %p\n",str,dst,&dst);
+    
+}
