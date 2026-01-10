@@ -47,8 +47,7 @@ int main() {
         printf("ptr1[%d]:%x \n",i,ptr1[i]);
     } */    
 }
-[?2004l
+Log:
 No OL CDEFGFG 
 OL ABABABA 
 OL ABABCDE memmove 
-[?2004h
