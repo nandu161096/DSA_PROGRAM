@@ -1,0 +1,17 @@
+def max_profit(prices):
+    buy_price = float('inf')
+    max_profit = 0
+
+    for price in prices:
+        if price < buy_price:
+            buy_price = price
+
+        profit = price - buy_price
+        if profit > max_profit:
+            max_profit = profit
+
+    return max_profit
+
+    
+prices = [7, 1, 5, 3, 6, 4]
+print(max_profit(prices))
