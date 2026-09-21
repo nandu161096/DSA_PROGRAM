@@ -1,0 +1,34 @@
+'''
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
+C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
+Code, Compile, Run and Debug online from anywhere in world.
+
+'''
+#print ('Hello World')
+
+def longest_substring(s):
+    chars = set()
+    left = 0
+    max_len = 0
+    longest_str = ""
+    
+    for right in range(len(s)):
+        
+        while s[right] in chars:
+            chars.remove(s[left])
+            left += 1
+            
+        chars.add(s[right])
+        
+        curr_len = right - left + 1
+        
+        if curr_len > max_len:
+            max_len = curr_len
+            longest_str = s[left:right+1]
+        
+    return longest_str, max_len
+
+substring, length = longest_substring("abcabcbb")
+print(substring, length)
